@@ -6,7 +6,7 @@ using Game.Domain;
 using MongoDB.Driver;
 using NUnit.Framework;
 
-namespace DbTests
+namespace Tests
 {
     [TestFixture]
     public class MongoUserRepositoryShould

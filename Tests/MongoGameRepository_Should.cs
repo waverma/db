@@ -6,7 +6,7 @@ using Game.Domain;
 using MongoDB.Driver.Core.WireProtocol.Messages;
 using NUnit.Framework;
 
-namespace DbTests
+namespace Tests
 {
     [TestFixture]
     public class MongoGameRepository_Should
