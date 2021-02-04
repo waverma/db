@@ -36,7 +36,7 @@ http://mongodb.github.io/mongo-csharp-driver/2.10/reference/bson/mapping/
    Операции чтения: http://mongodb.github.io/mongo-csharp-driver/2.10/reference/driver/crud/reading/
    Операции записи: http://mongodb.github.io/mongo-csharp-driver/2.10/reference/driver/crud/writing/
    Проверь работоспособность тестами на этот репозиторий.
-2. С помощью MongoDB Compass убедись, что после выполнения тестов, в базе `web-game-tests` создаются коллекции и документы.
+2. С помощью MongoDB Compass убедись, что после выполнения тестов, в базе `game-tests` создаются коллекции и документы.
 
 
 ### Индекс по UserEntity.Login
@@ -68,7 +68,7 @@ http://mongodb.github.io/mongo-csharp-driver/2.10/reference/bson/mapping/
    Операции чтения: http://mongodb.github.io/mongo-csharp-driver/2.10/reference/driver/crud/reading/
    Операции записи: http://mongodb.github.io/mongo-csharp-driver/2.10/reference/driver/crud/writing/
 2. Проверь работоспособность тестами на этот репозиторий.
-3. С помощью MongoDB Compass убедись, что после выполнения тестов, в базе web-game-tests создаются коллекции и документы.
+3. С помощью MongoDB Compass убедись, что после выполнения тестов, в базе game-tests создаются коллекции и документы.
 
 
 ### Games в ConsoleApp
