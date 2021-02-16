@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using Game.Domain;
 using MongoDB.Driver;
+using Game.Domain;
 
 namespace ConsoleApp
 {
@@ -9,6 +9,7 @@ namespace ConsoleApp
     {
         private readonly IUserRepository userRepo;
         private readonly IGameRepository gameRepo;
+        private readonly IGameTurnRepository turnsRepo;
         private readonly Random random = new Random();
 
         private Program(string[] args)
@@ -19,6 +20,7 @@ namespace ConsoleApp
             var db = new MongoClient(mongoConnectionString).GetDatabase("game");
             userRepo = new MongoUserRepository(db);
             gameRepo = new MongoGameRepository(db);
+            turnsRepo = new MongoGameTurnRepository(db);
         }
 
         public static void Main(string[] args)
@@ -130,8 +132,9 @@ namespace ConsoleApp
 
             if (game.HaveDecisionOfEveryPlayer)
             {
-                // TODO: Сохранить информацию о прошедшем туре в IGameTurnRepository. Сформировать информацию о закончившемся туре внутри FinishTurn и вернуть её сюда.
-                game.FinishTurn();
+                var gameTurn = game.FinishTurn();
+                // Save Turn Information to database:
+                turnsRepo.Insert(gameTurn);
             }
 
             ShowScore(game);
@@ -185,7 +188,17 @@ namespace ConsoleApp
         private void ShowScore(GameEntity game)
         {
             var players = game.Players;
-            // TODO: Показать информацию про 5 последних туров: кто как ходил и кто в итоге выиграл. Прочитать эту информацию из IGameTurnRepository
+            // Show 5 last turns: decisions of both players and the winner
+            var turns = turnsRepo.GetLastTurns(game.Id, 5);
+            Console.WriteLine();
+            Console.WriteLine("Last turns:");
+            foreach (var turn in turns)
+            {
+                var leftPlayerDecision = $"{players[0].Name}: {turn.PlayerDecisions[players[0].UserId.ToString()],-8}";
+                var rightPlayerDecision = $"{turn.PlayerDecisions[players[1].UserId.ToString()],8} {players[1].Name}";
+                var turnWinner = $"{players.FirstOrDefault(p => p.UserId == turn.WinnerId)?.Name ?? "nobody"}";
+                Console.WriteLine($"{turn.TurnIndex,-2} {leftPlayerDecision} vs {rightPlayerDecision} --> {turnWinner} wins");
+            }
             Console.WriteLine($"Score: {players[0].Name} {players[0].Score} : {players[1].Score} {players[1].Name}");
         }
     }
