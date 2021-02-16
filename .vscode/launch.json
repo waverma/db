@@ -8,7 +8,7 @@
             "name": "Launch ConsoleApp",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build ConsoleApp",
+            "preLaunchTask": "build Solution",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/ConsoleApp/bin/Debug/net5.0/ConsoleApp.dll",
             "args": [],
