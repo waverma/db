@@ -14,10 +14,9 @@
 Для изучения создай бесплатный кластер по ссылке https://www.mongodb.com/cloud/atlas/azure-mongodb.
 Выбирай план с free, хостинг можно выбрать любой.
 
-После создания кластера нажми на кнопку Connect и добавь свой IP-адрес в список разрешённых. Создай пользователя и запомни логин-пароль от него.
+После создания кластера нажми на кнопку Connect и добавь свой IP-адрес в список разрешенных. Создай пользователя и запомни логин-пароль от него.
 
-Затем полученную connection string вставь в TestMongoDatabase в переменную mongoConnectionString либо добавь значение в переменную среды
-PROJECT5100_MONGO_CONNECTION_STRING.
+Затем полученную connection string вставь в TestMongoDatabase в переменную mongoConnectionString.
 
 ## 1. Bson сериализация
 
